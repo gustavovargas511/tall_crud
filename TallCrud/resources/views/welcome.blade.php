@@ -1,8 +1,8 @@
     <x-base-layout>
-        <h1 class="text-3xl">Hola Laravel</h1>
-        <div x-data="{ count: 0 }">
-            <button @click="count++">Add</button>
-            <span x-text="count">0</span>
+        <div>
+            <div class="bg-gray-50 rounded mx-auto items-center p-5 shadow-lg">
+                <h1 class="text-3xl pb-5">Basic CRUD. Tall Stack.</h1>
+                <a class="border border-red-600 bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded" href="{{ route('restaurants.index') }}">Go to View</a>
+            </div>
         </div>
-        <livewire:counter>
     </x-base-layout>

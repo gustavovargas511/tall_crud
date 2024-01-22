@@ -18,7 +18,7 @@
     @livewireStyles
 </head>
 
-<body>
+<body class="flex w-full justify-center bg-red-900 p-5">
     {{ $slot }}
 
     @livewireScripts
