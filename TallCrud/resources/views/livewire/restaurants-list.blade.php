@@ -1,6 +1,6 @@
 
 <div x-data="{ showNewRestaurantForm: false }">
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-6">
         <div class="flex justify-end bg-gray-200 dark:bg-gray-700 py-2 px-6">
             <button class="text-white p-2 rounded bg-green-500 hover:bg-green-700"
                     x-on:click="showNewRestaurantForm = true">New Restaurant</button>
@@ -39,7 +39,9 @@
                             {{ $item->owner }}
                         </td>
                         <td class="px-6 py-4">
-                            <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
+                            <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded"
+                               x-on:click="showNewRestaurantForm = true"
+                               wire:click="editRestaurant({{ $item }})">
                                 Modify
                             </button>
                             <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"

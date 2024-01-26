@@ -11,6 +11,7 @@ class RestaurantsList extends Component
 {
     public $restaurantData;
     public $showNewRestaurantForm = false;
+    public $editingRestaurant;
 
     protected $listeners = ['newRestaurantAdded' => 'addRestaurant'];
 
@@ -59,6 +60,12 @@ class RestaurantsList extends Component
 
         // Close the form
         $this->showNewRestaurantForm = false;
+    }
+
+    public function editRestaurant($data)
+    {
+        
+        $this->dispatch('editRestaurant', $data);
     }
 
     public function render()
