@@ -5,7 +5,7 @@ namespace App\Livewire;
 use App\Models\Restaurant;
 use Livewire\Component;
 use Illuminate\Support\Facades\Log;
-
+use PhpParser\Node\Stmt\TryCatch;
 
 class RestaurantsList extends Component
 {
@@ -13,7 +13,13 @@ class RestaurantsList extends Component
     public $showNewRestaurantForm = false;
     public $editingRestaurant;
 
-    protected $listeners = ['newRestaurantAdded' => 'addRestaurant'];
+    protected $listeners = ['newRestaurantAdded' => 'addRestaurant', 'editRestaurant' => 'editRestaurant'];
+
+    public $editData;
+    public $name    = '';
+    public $address = '';
+    public $owner   = '';
+    //public $showNewRestaurantForm = false;
 
     public function mount(){
         $this->restaurantData = Restaurant::all();
@@ -62,10 +68,26 @@ class RestaurantsList extends Component
         $this->showNewRestaurantForm = false;
     }
 
+    public function setData($data)
+    {
+        //Log::info('Editing restaurant:', $data);
+        $this->name = $data['name'];
+        $this->address = $data['address'];
+        $this->owner = $data['owner'];
+
+        $this->dispatch('editRestaurant', [
+            'name' => $this->name,
+            'address' => $this->address,
+            'owner' => $this->owner,
+        ]);
+
+        // Reset the form fields
+        $this->reset(['name', 'address', 'owner']);
+    }
+    
     public function editRestaurant($data)
     {
-        
-        $this->dispatch('editRestaurant', $data);
+
     }
 
     public function render()

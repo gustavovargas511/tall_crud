@@ -1,5 +1,6 @@
 
-<div x-data="{ showNewRestaurantForm: false }">
+<div x-data="{ showNewRestaurantForm: false,
+               showEditRestaurant: false }">
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-6">
         <div class="flex justify-end bg-gray-200 dark:bg-gray-700 py-2 px-6">
             <button class="text-white p-2 rounded bg-green-500 hover:bg-green-700"
@@ -9,8 +10,11 @@
         <div x-show="showNewRestaurantForm">
           @livewire('new-restaurant-form')
         </div>
+        <div x-show="showEditRestaurant">
+            @livewire('edit-restaurant-form')
+          </div>
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <thead class="text-center text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
                         Name
@@ -40,8 +44,8 @@
                         </td>
                         <td class="px-6 py-4">
                             <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded"
-                               x-on:click="showNewRestaurantForm = true"
-                               wire:click="editRestaurant({{ $item }})">
+                               x-on:click="showEditRestaurant = true"
+                               wire:click="setData({{ $item }})">
                                 Modify
                             </button>
                             <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
